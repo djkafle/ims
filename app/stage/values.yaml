@@ -1,6 +1,5 @@
 replicaCount: 1
 name: flaskapp
-
 labels:
   app: flask
   env: dev
@@ -21,4 +20,5 @@ configmap:
   MYSQL_DB: sql5773176
 
 secret:
-  MYSQL_PASSWORD: ""  # will be injected via external `secret.yaml`
+  MYSQL_PASSWORD: MTIzNDU2Nzg5  # base64 for '123456789'
+
