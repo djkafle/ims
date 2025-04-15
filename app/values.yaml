@@ -1,0 +1,23 @@
+replicaCount: 1
+
+image:
+  repository: karkironisha/ims
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 5000
+
+configmap:
+  MYSQL_HOST: db-service.dj-db.svc.cluster.local
+  MYSQL_USER: root
+  MYSQL_DB: sql5773176
+
+secret:
+  MYSQL_PASSWORD: MTIzNDU2Nzg5  # base64 for '123456789'
+
+labels:
+  app: flask
+  env: dev
+  version: v1

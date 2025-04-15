@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-configmap
+  labels:
+    app: {{ .Values.labels.app }}
+    env: {{ .Values.labels.env }}
+data:
+  MYSQL_DATABASE: {{ .Values.configmap.MYSQL_DATABASE }}
