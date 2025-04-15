@@ -3,20 +3,20 @@ kind: Deployment
 metadata:
   name: db-deployment
   labels:
-    app: {{ .Values.labels.app }}
-    env: {{ .Values.labels.env }}
+    app: {{ .Values.labels.app | quote }}
+    env: {{ .Values.labels.env | quote }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ .Values.labels.app }}
-      version: {{ .Values.labels.version }}
+      app: {{ .Values.labels.app | quote }}
+      version: {{ .Values.labels.version | quote }}
   template:
     metadata:
       labels:
-        app: {{ .Values.labels.app }}
-        env: {{ .Values.labels.env }}
-        version: {{ .Values.labels.version }}
+        app: {{ .Values.labels.app | quote }}
+        env: {{ .Values.labels.env | quote }}
+        version: {{ .Values.labels.version | quote }}
     spec:
       containers:
       - name: db-container

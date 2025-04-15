@@ -3,12 +3,13 @@ kind: Service
 metadata:
   name: db-service
   labels:
-    version: {{ .Values.labels.version }}
+    app: {{ .Values.labels.app | quote }}
+    version: {{ .Values.labels.version | quote }}
 spec:
   type: {{ .Values.service.type }}
   selector:
-    app: {{ .Values.labels.app }}
-    version: {{ .Values.labels.version }}
+    app: {{ .Values.labels.app | quote }}
+    version: {{ .Values.labels.version | quote }}
   ports:
     - protocol: TCP
       port: {{ .Values.service.port }}
