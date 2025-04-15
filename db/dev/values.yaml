@@ -12,9 +12,6 @@ service:
 configmap:
   MYSQL_DATABASE: sql5773176
 
-secret:
-  MYSQL_ROOT_PASSWORD: MTIzNDU2Nzg5  # base64 for '123456789'
-
 labels:
   app: db
   env: dev
