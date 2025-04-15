@@ -18,7 +18,3 @@ configmap:
   MYSQL_HOST: db-service.dj-db.svc.cluster.local
   MYSQL_USER: root
   MYSQL_DB: sql5773176
-
-secret:
-  MYSQL_PASSWORD: MTIzNDU2Nzg5  # base64 for '123456789'
-
