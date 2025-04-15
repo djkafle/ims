@@ -1,4 +1,9 @@
 replicaCount: 1
+name: flaskapp
+labels:
+  app: flask
+  env: dev
+  version: v1
 
 image:
   repository: karkironisha/ims
@@ -6,7 +11,7 @@ image:
   pullPolicy: IfNotPresent
 
 service:
-  type: NodePort
+  type: ClusterIP
   port: 5000
 
 configmap:
@@ -17,7 +22,3 @@ configmap:
 secret:
   MYSQL_PASSWORD: MTIzNDU2Nzg5  # base64 for '123456789'
 
-labels:
-  app: flask
-  env: dev
-  version: v1
