@@ -1,0 +1,15 @@
+nginx:
+  name: proxy-server
+  labels:
+    app: flask
+    env: dev
+    version: v1
+  image:
+    repository: dhananjayakafle/custom-nginx
+    tag: "latest"
+    pullPolicy: IfNotPresent
+  replicas: 1
+  service:
+    type: NodePort
+    port: 80
+    targetPort: 80

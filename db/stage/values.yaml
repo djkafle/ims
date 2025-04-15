@@ -1,0 +1,21 @@
+replicaCount: 1
+
+image:
+  repository: karkironisha/ims_db
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 3306
+
+configmap:
+  MYSQL_DATABASE: sql5773176
+
+secret:
+  MYSQL_ROOT_PASSWORD: MTIzNDU2Nzg5  # base64 for '123456789'
+
+labels:
+  app: db
+  env: dev
+  version: v1
