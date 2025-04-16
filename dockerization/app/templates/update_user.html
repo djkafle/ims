@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Update User{% endblock %}
+
+{% block content %}
+<h2 class="text-center">Update User</h2>
+
+<form method="post">
+    <div class="mb-3">
+        <label>Name</label>
+        <input type="text" name="name" class="form-control" value="{{ user.name if user else '' }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Email</label>
+        <input type="email" name="email" class="form-control" value="{{ user.email if user else '' }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Role</label>
+        <select name="role" class="form-select">
+            {% for role in roles %}
+                <option value="{{ role.role_id }}" {% if user and user.role_id == role.role_id %}selected{% endif %}>
+                    {{ role.role }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Status</label>
+        <select name="status" class="form-select">
+            <option value="enabled" {% if user and user.status == 'enabled' %}selected{% endif %}>Enabled</option>
+            <option value="disabled" {% if user and user.status == 'disabled' %}selected{% endif %}>Disabled</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Department</label>
+        <select name="department" class="form-select">
+            <option value="Finance" {% if user and user.department == 'Finance' %}selected{% endif %}>Finance</option>
+            <option value="Sales" {% if user and user.department == 'Sales' %}selected{% endif %}>Sales</option>
+            <option value="Management" {% if user and user.department == 'Management' %}selected{% endif %}>Management</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Country</label>
+        <input type="text" name="country" class="form-control" value="{{ user.country if user else '' }}">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+
+<h2>Enabled Users</h2>
+<table class="table table-bordered table-striped mb-5">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Department</th><th>Country</th>
+      {% if session['role'] == 'admin' %}<th>Actions</th>{% endif %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users if user.status == 'enabled' %}
+    <tr>
+      <td>{{ user.userid }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.role }}</td>
+      <td>{{ user.status }}</td>
+      <td>{{ user.department }}</td>
+      <td>{{ user.country }}</td>
+      {% if session['role'] == 'admin' %}
+      <td>
+        <a href="{{ url_for('update_user', userid=user.userid) }}" class="btn btn-warning btn-sm">Edit</a>
+      </td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h2>Disabled Users</h2>
+<table class="table table-bordered table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Department</th><th>Country</th>
+      {% if session['role'] == 'admin' %}<th>Actions</th>{% endif %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users if user.status == 'disabled' %}
+    <tr>
+      <td>{{ user.userid }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.role }}</td>
+      <td>{{ user.status }}</td>
+      <td>{{ user.department }}</td>
+      <td>{{ user.country }}</td>
+      {% if session['role'] == 'admin' %}
+      <td>
+        <a href="{{ url_for('update_user', userid=user.userid) }}" class="btn btn-warning btn-sm">Edit</a>
+        <form action="{{ url_for('delete_user', userid=user.userid) }}" method="post" style="display:inline;">
+          <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+        </form>
+      </td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
